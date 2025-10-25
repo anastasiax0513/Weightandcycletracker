@@ -112,10 +112,30 @@ vercel --prod
 
 ## Troubleshooting
 
-### Build Failed?
-- Make sure all files are uploaded (check the file structure matches)
-- Verify `package.json`, `vite.config.ts`, and `tsconfig.json` exist
+### Build Failed - "No Output Directory named dist found"?
+**Solution:** Make sure you've uploaded ALL files including:
+- ✅ `package.json`
+- ✅ `vite.config.ts`
+- ✅ `tsconfig.json`
+- ✅ `tsconfig.node.json`
+- ✅ `.npmrc`
+- ✅ `index.html`
+- ✅ `main.tsx`
+
+Then in Vercel:
+1. Go to your project → Settings → General
+2. Under "Build & Development Settings":
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+   - **Install Command:** `npm install`
+3. Click "Save"
+4. Go to Deployments → Click the three dots → "Redeploy"
+
+### Other Build Errors?
 - Check the build logs in Vercel dashboard for specific errors
+- Make sure all component files are uploaded
+- Verify there are no TypeScript errors in your files
 
 ### App Not Loading?
 - Clear your browser cache
