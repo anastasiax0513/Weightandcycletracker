@@ -113,24 +113,40 @@ vercel --prod
 ## Troubleshooting
 
 ### Build Failed - "No Output Directory named dist found"?
-**Solution:** Make sure you've uploaded ALL files including:
+
+**CRITICAL FILES TO UPLOAD:**
+Make sure ALL these files are in your GitHub repository:
+- ✅ `.npmrc` (hidden file - very important!)
+- ✅ `.vercelignore` (hidden file)
 - ✅ `package.json`
 - ✅ `vite.config.ts`
 - ✅ `tsconfig.json`
 - ✅ `tsconfig.node.json`
-- ✅ `.npmrc`
+- ✅ `vercel.json`
 - ✅ `index.html`
 - ✅ `main.tsx`
+- ✅ `App.tsx`
+- ✅ All folders: `components/`, `hooks/`, `public/`, `styles/`, `types/`, `utils/`
 
-Then in Vercel:
-1. Go to your project → Settings → General
-2. Under "Build & Development Settings":
-   - **Framework Preset:** Vite
+**IMPORTANT:** Hidden files (starting with `.`) may not upload automatically!
+- On Mac/Linux: Use `ls -la` to see hidden files
+- When uploading to GitHub, make sure to include hidden files
+
+**Then in Vercel:**
+1. Go to your project → **Settings** → **General**
+2. Scroll to "Build & Development Settings"
+3. Set these EXACT values:
+   - **Framework Preset:** `Vite`
    - **Build Command:** `npm run build`
    - **Output Directory:** `dist`
    - **Install Command:** `npm install`
-3. Click "Save"
-4. Go to Deployments → Click the three dots → "Redeploy"
+4. Click **"Save"**
+5. Go to **Deployments** tab
+6. Click the **three dots (⋮)** on the latest deployment
+7. Click **"Redeploy"**
+8. Wait 1-2 minutes for build to complete
+
+**Still failing?** Check the build logs in Vercel for the specific error message.
 
 ### Other Build Errors?
 - Check the build logs in Vercel dashboard for specific errors
